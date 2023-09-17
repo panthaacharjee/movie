@@ -12,7 +12,7 @@ const SingleMovie = () => {
   console.log(movie);
   useEffect(() => {
     dispatch(getMovie(id.id));
-  }, [id, dispatch]);
+  }, [id]);
   return (
     <div>
       <div
@@ -26,37 +26,44 @@ const SingleMovie = () => {
           <AiFillHome />
         </p>
       </div>
-      <div className="flex my-5 px-8">
-        <div className="w-2/12 ">
-          <img
-            src="https://i.ytimg.com/vi/v6f66NY6MpU/maxresdefault.jpg"
-            className="rounded-lg h-52 "
-            style={{ boxShadow: "0px 0px 4px 0px #000" }}
-          />
-        </div>
-        <div className="w-10/12 pl-3">
-          <p className="text-xl font-medium">
-            {movie.name} ({movie.rating})
-          </p>
-
-          <p className="text-medium">
-            {movie.year} | {movie.length} | {movie.director}
-          </p>
-          <div className="flex">
-            <p className="mr-2 font-medium">Cast: </p>
-            {movie.cast.map((val, ind) => {
-              return (
-                <p key={ind} className="mr-2">
-                  {val.name},
-                </p>
-              );
-            })}
+      {loading ? (
+        <p>Please wait</p>
+      ) : (
+        <div className="flex my-5 px-8">
+          <div className="w-2/12 ">
+            <img
+              src="https://i.ytimg.com/vi/v6f66NY6MpU/maxresdefault.jpg"
+              className="rounded-lg h-52 "
+              style={{ boxShadow: "0px 0px 4px 0px #000" }}
+            />
           </div>
-          <p className="mt-2">
-            <span className="font-bold">Description:</span> {movie.description}
-          </p>
+          <div className="w-10/12 pl-3">
+            <p className="text-xl font-medium">
+              {movie && movie.name} ({movie && movie.rating})
+            </p>
+
+            <p className="text-medium">
+              {movie && movie.year} | {movie && movie.length} |{" "}
+              {movie && movie.director}
+            </p>
+            <div className="flex">
+              <p className="mr-2 font-medium">Cast: </p>
+              {movie &&
+                movie.cast.map((val, ind) => {
+                  return (
+                    <p key={ind} className="mr-2">
+                      {val.name},
+                    </p>
+                  );
+                })}
+            </div>
+            <p className="mt-2">
+              <span className="font-bold">Description:</span>
+              {movie && movie.description}
+            </p>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

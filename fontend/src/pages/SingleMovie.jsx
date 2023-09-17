@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getMovie } from "../redux/actions/movieAction";
 import { IoMdSearch } from "react-icons/io";
 import { AiFillHome } from "react-icons/ai";
@@ -22,9 +22,9 @@ const SingleMovie = () => {
         <div className="relative flex items-center ">
           <p className="text-lg font-medium">Movie Details</p>
         </div>
-        <p className="text-xl cursor-pointer">
+        <Link to="/" className="text-xl cursor-pointer">
           <AiFillHome />
-        </p>
+        </Link>
       </div>
       {loading ? (
         <p>Please wait</p>
